@@ -1,47 +1,33 @@
+import { NavLink } from "react-router";
+import { routes } from "../../routes/AppRouter";
+import HeaderItem from "./HeaderItem";
+
 export default function Header() {
   return (
     <nav className="navbar navbar-light">
       <div className="container">
-        <a className="navbar-brand" href="/">
+        <NavLink className="navbar-brand" to={routes.Home}>
           conduit
-        </a>
+        </NavLink>
         <ul className="nav navbar-nav pull-xs-right">
-          <li className="nav-item">
-            {/* <!-- Add "active" className when you're on that page" --> */}
+          <HeaderItem route={routes.Home}>Home</HeaderItem>
 
-            <a className="nav-link active" href="/">
-              Home
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/login">
-              Sign in
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/register">
-              Sign up
-            </a>
-          </li>
+          <HeaderItem route={routes.Login}>Sign in</HeaderItem>
 
-          <li className="nav-item">
-            <a className="nav-link" href="/editor">
-              {" "}
-              <i className="ion-compose"></i>&nbsp;New Article{" "}
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/settings">
-              {" "}
-              <i className="ion-gear-a"></i>&nbsp;Settings{" "}
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/profile/eric-simons">
-              <img title="profile" src="" className="user-pic" />
-              Eric Simons
-            </a>
-          </li>
+          <HeaderItem route={routes.Register}>Sign up</HeaderItem>
+
+          <HeaderItem route={routes.EditArticle}>
+            <i className="ion-compose"></i>&nbsp;New Article
+          </HeaderItem>
+
+          <HeaderItem route={routes.Setting}>
+            <i className="ion-gear-a"></i>&nbsp;Settings
+          </HeaderItem>
+
+          <HeaderItem route={`${routes.Profile}/eric-simons`}>
+            <img title="profile" src="" className="user-pic" />
+            Eric Simons
+          </HeaderItem>
         </ul>
       </div>
     </nav>

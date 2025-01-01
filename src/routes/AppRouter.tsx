@@ -18,15 +18,16 @@ export default function AppRouter() {
           element: <Home />,
         },
         {
-          path: routes.Profile,
+          path: `${routes.Profile}/:id`,
           element: <Profile />,
         },
         {
-          path: routes.Article,
+          path: `${routes.Article}/:id`,
           element: <Article />,
         },
+
         {
-          path: routes.EditArticle,
+          path: `${routes.EditArticle}/:id?`,
           element: <EditArticle />,
         },
         {
@@ -47,11 +48,11 @@ export default function AppRouter() {
   return <RouterProvider router={router} />;
 }
 
-enum routes {
+export enum routes {
   Home = "/",
-  Profile = "Profile/:id",
-  Article = "Article/:id",
-  EditArticle = "EditArticle/:id",
+  Profile = "Profile",
+  Article = "Article",
+  EditArticle = "EditArticle",
   Setting = "Setting",
   Login = "Login",
   Register = "Register",
