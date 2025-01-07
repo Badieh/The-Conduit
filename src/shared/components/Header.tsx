@@ -16,7 +16,9 @@ export default function Header() {
           conduit
         </NavLink>
         <ul className="nav navbar-nav pull-xs-right">
-          <HeaderItem route={paths.home.getHref()}>Home</HeaderItem>
+          <HeaderItem route={paths.home.getHref()}>
+            <i className="ion-home"></i>&nbsp;Home
+          </HeaderItem>
           {user ? (
             <>
               <HeaderItem route={paths.editArticle.getHref()}>
@@ -27,8 +29,8 @@ export default function Header() {
                 <i className="ion-gear-a"></i>&nbsp;Settings
               </HeaderItem>
 
-              <HeaderItem route={paths.profile.getHref(user.username)}>
-                <img title="profile" src="" className="user-pic" />
+              <HeaderItem route={paths.profile.getHref(user.username!)}>
+                <i className="ion-person"></i>&nbsp;
                 {user.username}
               </HeaderItem>
             </>

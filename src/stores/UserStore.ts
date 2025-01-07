@@ -7,11 +7,11 @@ import { createJSONStorage, persist } from "zustand/middleware";
 // "bio": "I work at statefarm",
 // "image": null
 type User = {
-  email: string;
-  token: string;
-  username: string;
-  bio: string;
-  image: string | null;
+  email?: string;
+  token?: string;
+  username?: string;
+  bio?: string;
+  image?: string;
 };
 
 type UserState = {
