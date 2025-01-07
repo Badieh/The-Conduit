@@ -1,4 +1,11 @@
+import { paths } from "@/routes/AppRouter";
+import { useUserStore } from "@/stores/UserStore";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
+
 export default function Setting() {
+  const navigate = useNavigate();
+
   return (
     <div className="settings-page">
       <div className="container page">
@@ -53,7 +60,7 @@ export default function Setting() {
               </fieldset>
             </form>
             <hr />
-            <button className="btn btn-outline-danger">
+            <button className="btn btn-outline-danger" onClick={logout}>
               Or click here to logout.
             </button>
           </div>
@@ -61,4 +68,9 @@ export default function Setting() {
       </div>
     </div>
   );
+  function logout() {
+    useUserStore.setState({ user: null });
+    navigate(paths.home.getHref());
+    toast.success("Logout successfully");
+  }
 }

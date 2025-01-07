@@ -2,11 +2,12 @@ import Profile from "../features/profile/pages/Profile";
 import Home from "../features/home/pages/Home";
 import AppLayout from "../shared/pages/AppLayout";
 import { createBrowserRouter, RouterProvider } from "react-router";
-import Article from "../features/articles/pages/Article";
+
 import Setting from "../features/setting/pages/Setting";
 import Login from "../features/authentication/pages/Login";
 import Register from "../features/authentication/pages/Register";
 import EditArticle from "../features/articles/pages/EditArticle";
+import Article from "@/features/articles/pages/Article";
 
 export default function AppRouter() {
   const router = createBrowserRouter([
@@ -14,32 +15,32 @@ export default function AppRouter() {
       element: <AppLayout />,
       children: [
         {
-          path: "/",
+          path: paths.home.path,
           element: <Home />,
         },
         {
-          path: `${routes.Profile}/:id`,
+          path: paths.profile.path,
           element: <Profile />,
         },
         {
-          path: `${routes.Article}/:id`,
+          path: paths.article.path,
           element: <Article />,
         },
 
         {
-          path: `${routes.EditArticle}/:id?`,
+          path: paths.editArticle.path,
           element: <EditArticle />,
         },
         {
-          path: routes.Setting,
+          path: paths.setting.path,
           element: <Setting />,
         },
         {
-          path: routes.Login,
+          path: paths.login.path,
           element: <Login />,
         },
         {
-          path: routes.Register,
+          path: paths.register.path,
           element: <Register />,
         },
       ],
@@ -48,12 +49,47 @@ export default function AppRouter() {
   return <RouterProvider router={router} />;
 }
 
-export enum routes {
-  Home = "/",
-  Profile = "Profile",
-  Article = "Article",
-  EditArticle = "EditArticle",
-  Setting = "Setting",
-  Login = "Login",
-  Register = "Register",
-}
+// export enum routesName {
+//   Home = "/",
+//   Profile = "Profile",
+//   Article = "Article",
+//   EditArticle = "EditArticle",
+//   Setting = "Setting",
+//   Login = "Login",
+//   Register = "Register",
+// }
+// export function routePath(route: routesName) {
+//   return `/${route}`;
+// }
+
+export const paths = {
+  home: {
+    path: "/",
+    getHref: () => "/",
+  },
+
+  profile: {
+    path: "/profile/:id",
+    getHref: (id: string) => `/profile/${id}`,
+  },
+  article: {
+    path: "/article/:id",
+    getHref: (id: string) => `/article/${id}`,
+  },
+  editArticle: {
+    path: "/edit-article/:id?",
+    getHref: (id?: string) => `/edit-article/${id}`,
+  },
+  setting: {
+    path: "/setting",
+    getHref: () => "/setting",
+  },
+  login: {
+    path: "/login",
+    getHref: () => "/login",
+  },
+  register: {
+    path: "/register",
+    getHref: () => "/register",
+  },
+};

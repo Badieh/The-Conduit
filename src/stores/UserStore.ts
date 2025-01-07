@@ -1,4 +1,4 @@
-import { createStore } from "zustand";
+import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
 // "email": "jake@jake.jake",
@@ -18,7 +18,7 @@ type UserState = {
   user: User | null;
   setUser: (user: User) => void;
 };
-export const useUserStore = createStore<UserState>()(
+export const useUserStore = create<UserState>()(
   persist(
     (set, get) => ({
       user: null,
