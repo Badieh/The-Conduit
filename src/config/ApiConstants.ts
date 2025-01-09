@@ -9,6 +9,8 @@ const articlesUrl = `/articles`;
 
 const yourFeedUrl = `/articles/feed`;
 
+const tagsUrl = `/tags`;
+
 export {
   BaseUrl,
   loginUrl,
@@ -16,4 +18,5 @@ export {
   updateUserUrl,
   articlesUrl,
   yourFeedUrl,
+  tagsUrl,
 };

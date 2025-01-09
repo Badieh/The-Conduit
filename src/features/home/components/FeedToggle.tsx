@@ -3,10 +3,14 @@ import { FeedType } from "./Feed";
 
 export default function FeedToggle({
   selectedFeedType,
-  setSelectedFeed,
+  setSelectedFeedType,
+  selectedTag,
+  setSelectedTag,
 }: {
   selectedFeedType: FeedType;
-  setSelectedFeed: (FeedType: FeedType) => void;
+  setSelectedFeedType: (FeedType: FeedType) => void;
+  selectedTag: string | null;
+  setSelectedTag: (tag: string | null) => void;
 }) {
   const user = useUserStore((state) => state.user);
   return (
@@ -17,7 +21,10 @@ export default function FeedToggle({
             className={`nav-item nav-link ${
               selectedFeedType === FeedType.your_feed ? "active" : ""
             }`}
-            onClick={() => setSelectedFeed(FeedType.your_feed)}
+            onClick={() => {
+              setSelectedTag?.(null);
+              return setSelectedFeedType(FeedType.your_feed);
+            }}
             style={{ cursor: "pointer" }}
           >
             Your Feed
@@ -28,11 +35,26 @@ export default function FeedToggle({
           className={`nav-item nav-link ${
             selectedFeedType === FeedType.global ? "active" : ""
           }`}
-          onClick={() => setSelectedFeed(FeedType.global)}
+          onClick={() => {
+            setSelectedTag?.(null);
+
+            return setSelectedFeedType(FeedType.global);
+          }}
           style={{ cursor: "pointer" }}
         >
           Global Feed
         </li>
+        {selectedFeedType === FeedType.popular_tags && selectedTag && (
+          <li
+            className={`nav-item nav-link ${
+              selectedFeedType === FeedType.popular_tags ? "active" : ""
+            }`}
+            style={{ cursor: "pointer" }}
+          >
+              <i className="ion-pound"></i>&nbsp; 
+            {selectedTag}
+          </li>
+        )}
       </ul>
     </div>
   );

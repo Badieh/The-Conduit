@@ -1,17 +1,29 @@
+import { useState } from "react";
 import Banner from "../components/Banner";
-import Feed from "../components/Feed";
+import Feed, { FeedType } from "../components/Feed";
 import PopularTags from "../components/PopularTags";
 
 export default function Home() {
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [selectedFeedType, setSelectedFeedType] = useState(FeedType.global);
+
   return (
     <div className="home-page">
       <Banner />
 
       <div className="container page">
         <div className="row">
-          <Feed />
+          <Feed
+            selectedFeedType={selectedFeedType}
+            setSelectedFeedType={setSelectedFeedType}
+            selectedTag={selectedTag}
+            setSelectedTag={setSelectedTag}
+          />
 
-          <PopularTags />
+          <PopularTags
+            setSelectedTag={setSelectedTag}
+            setSelectedFeedType={setSelectedFeedType}
+          />
         </div>
       </div>
     </div>

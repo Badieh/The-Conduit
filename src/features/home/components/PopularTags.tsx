@@ -1,34 +1,31 @@
-export default function PopularTags() {
+import useAllTags from "../api/AllTagsApi";
+import { FeedType } from "./Feed";
+import Tag from "./Tag";
+
+export default function PopularTags({
+  setSelectedTag,
+  setSelectedFeedType,
+}: {
+  setSelectedTag: (tag: string) => void;
+  setSelectedFeedType: (FeedType: FeedType) => void;
+}) {
+  const { data } = useAllTags();
+  const tags = data?.data.tags.slice(0, 50);
+
   return (
     <div className="col-md-3">
       <div className="sidebar">
         <p>Popular Tags</p>
 
         <div className="tag-list">
-          <a href="" className="tag-pill tag-default">
-            programming
-          </a>
-          <a href="" className="tag-pill tag-default">
-            javascript
-          </a>
-          <a href="" className="tag-pill tag-default">
-            emberjs
-          </a>
-          <a href="" className="tag-pill tag-default">
-            angularjs
-          </a>
-          <a href="" className="tag-pill tag-default">
-            react
-          </a>
-          <a href="" className="tag-pill tag-default">
-            mean
-          </a>
-          <a href="" className="tag-pill tag-default">
-            node
-          </a>
-          <a href="" className="tag-pill tag-default">
-            rails
-          </a>
+          {tags?.map((tag: string) => (
+            <Tag
+              key={tag}
+              tag={tag}
+              setSelectedTag={setSelectedTag}
+              setSelectedFeedType={setSelectedFeedType}
+            />
+          ))}
         </div>
       </div>
     </div>
