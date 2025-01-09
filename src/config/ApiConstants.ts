@@ -5,4 +5,15 @@ const registerUrl = `/users`;
 
 const updateUserUrl = `/user`;
 
-export { BaseUrl, loginUrl, registerUrl, updateUserUrl };
+const articlesUrl = `/articles`;
+
+const yourFeedUrl = `/articles/feed`;
+
+export {
+  BaseUrl,
+  loginUrl,
+  registerUrl,
+  updateUserUrl,
+  articlesUrl,
+  yourFeedUrl,
+};

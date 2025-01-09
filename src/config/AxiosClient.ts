@@ -11,9 +11,11 @@ const axiosClient = axios.create({
 });
 
 axiosClient.interceptors.request.use(function (config) {
-  config.headers.Authorization = `Token ${
-    useUserStore.getState().user?.token
-  } }`;
+  if (useUserStore.getState().user) {
+    config.headers.Authorization = `Token ${
+      useUserStore.getState().user?.token
+    }`;
+  }
   return config;
 });
 
