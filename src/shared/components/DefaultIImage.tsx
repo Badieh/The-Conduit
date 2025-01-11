@@ -1,6 +1,7 @@
-export default function DefaultIImage() {
+export default function DefaultIImage({className}:{className?:string}) {
   return (
     <img
+      className={className}
       title="user-img"
       src="src/assets/default_user.png"
       alt="default_user"

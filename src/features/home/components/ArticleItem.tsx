@@ -1,4 +1,6 @@
+import { paths } from "@/routes/AppRouter";
 import DefaultIImage from "@/shared/components/DefaultIImage";
+import type { Article } from "@/shared/types/ArticleModel";
 import { Link } from "react-router";
 
 export default function ArticleItem({ article }: { article: Article }) {
@@ -6,7 +8,7 @@ export default function ArticleItem({ article }: { article: Article }) {
     <div className="article-preview">
       <div className="article-meta">
         {/* image */}
-        <Link to="/profile/eric-simons">
+        <Link to={paths.profile.getHref(article.author.username)}>
           {article.author.image ? (
             <img
               title="profile"
@@ -23,12 +25,22 @@ export default function ArticleItem({ article }: { article: Article }) {
 
         {/* Name */}
         <div className="info">
-          <Link to="/profile/eric-simons" className="author">
+          <Link
+            to={paths.profile.getHref(article.author.username)}
+            className="author"
+          >
             {article.author.username}
           </Link>
 
           {/* Date */}
-          <span className="date">{article.createdAt}</span>
+          <span className="date">
+            {" "}
+            {Intl.DateTimeFormat("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            }).format(new Date(article.createdAt))}
+          </span>
         </div>
 
         {/* Heart Button */}
@@ -38,10 +50,7 @@ export default function ArticleItem({ article }: { article: Article }) {
       </div>
 
       {/* Article Info */}
-      <a
-        href="/article/how-to-build-webapps-that-scale"
-        className="preview-link"
-      >
+      <Link to={paths.article.getHref(article.slug)} className="preview-link">
         <h1>{article.title}</h1>
         <p>{article.description}</p>
         <span>Read more...</span>
@@ -52,25 +61,7 @@ export default function ArticleItem({ article }: { article: Article }) {
             </li>
           ))}
         </ul>
-      </a>
+      </Link>
     </div>
   );
 }
-
-export type Article = {
-  author: {
-    username: string;
-    image: string;
-    following: boolean;
-    followersCount: number;
-    bio: string;
-  };
-  slug: string;
-  title: string;
-  body: string;
-  description: string;
-  favorited: boolean;
-  favoritesCount: number;
-  tagList: string[];
-  createdAt: string;
-};
