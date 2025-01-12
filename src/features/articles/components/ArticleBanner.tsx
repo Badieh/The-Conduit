@@ -2,6 +2,7 @@ import { paths } from "@/routes/AppRouter";
 import UserImage from "@/shared/components/UserImage";
 import { Article } from "@/shared/types/ArticleModel";
 import { Link } from "react-router";
+import { useDeleteArticle } from "../api/DeleteArticleApi";
 
 export default function ArticleBanner({
   article,
@@ -10,6 +11,12 @@ export default function ArticleBanner({
   article: Article;
   isArticleOwner: boolean;
 }) {
+  const deleteArticleMutation = useDeleteArticle({ slug: article.slug });
+  function handleDeleteArticle() {
+    if (!window.confirm("Are you sure you want to delete this article?"))
+      return;
+    deleteArticleMutation.mutate();
+  }
   return (
     <div className="banner">
       <div className="container">
@@ -40,7 +47,10 @@ export default function ArticleBanner({
               <button className="btn btn-sm btn-outline-secondary">
                 <i className="ion-edit"></i> Edit Article
               </button>
-              <button className="btn btn-sm btn-outline-danger">
+              <button
+                className="btn btn-sm btn-outline-danger"
+                onClick={handleDeleteArticle}
+              >
                 <i className="ion-trash-a"></i> Delete Article
               </button>
             </>

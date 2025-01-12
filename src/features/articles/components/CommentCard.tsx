@@ -18,6 +18,8 @@ export default function CommentCard({
   });
 
   function handleDeleteComment() {
+    if (!window.confirm("Are you sure you want to delete this comment?"))
+      return;
     deleteCommentMutation.mutate();
   }
   return (

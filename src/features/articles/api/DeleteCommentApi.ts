@@ -10,7 +10,9 @@ async function DeleteCommentMutationFunction({
   slug: string;
   commentId: Number;
 }) {
-  return await axiosClient.delete(`${articlesUrl}/${slug}/comments/${commentId}`);
+  return await axiosClient.delete(
+    `${articlesUrl}/${slug}/comments/${commentId}`
+  );
 }
 
 export function useDeleteComment({
@@ -22,7 +24,7 @@ export function useDeleteComment({
 }) {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationKey: ["createComment"],
+    mutationKey: ["deleteComment", commentId],
     mutationFn: () => DeleteCommentMutationFunction({ slug, commentId }),
     onError: (error: any) => {
       console.log(error);
