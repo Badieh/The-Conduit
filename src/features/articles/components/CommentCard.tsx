@@ -2,8 +2,24 @@ import UserImage from "@/shared/components/UserImage";
 import type { Comment } from "../types/commentModel";
 import { Link } from "react-router";
 import { paths } from "@/routes/AppRouter";
+import { useDeleteComment } from "../api/DeleteCommentApi";
+import { Article } from "@/shared/types/ArticleModel";
 
-export default function CommentCard({ comment }: { comment: Comment }) {
+export default function CommentCard({
+  article,
+  comment,
+}: {
+  article: Article;
+  comment: Comment;
+}) {
+  const deleteCommentMutation = useDeleteComment({
+    slug: article.slug,
+    commentId: comment.id,
+  });
+
+  function handleDeleteComment() {
+    deleteCommentMutation.mutate();
+  }
   return (
     <div className="card">
       <div className="card-block">
@@ -28,11 +44,11 @@ export default function CommentCard({ comment }: { comment: Comment }) {
             day: "numeric",
           }).format(new Date(comment?.createdAt))}
         </span>
-        <button 
+        <button
           className="btn btn-sm btn-outline-secondary pull-xs-right"
           title="Delete comment"
           type="button"
-          onClick={() => {console.log("delete comment")}}
+          onClick={handleDeleteComment}
         >
           <i className="ion-trash-a"></i>
         </button>

@@ -61,7 +61,7 @@ export default function ArticleComments({ article }: { article: Article }) {
         )}
 
         {comments?.map((comment) => (
-          <CommentCard key={comment.id} comment={comment} />
+          <CommentCard key={comment.id} comment={comment} article={article} />
         ))}
       </div>
     </div>
