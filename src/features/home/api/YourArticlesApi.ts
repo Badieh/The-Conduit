@@ -12,7 +12,7 @@ export function useYourFeedArticles(
   page: number
 ): UseQueryResult<AxiosResponse> {
   return useQuery({
-    queryKey: ["yourArticles", page],
+    queryKey: ["articles", "your", page],
     queryFn: () => yourFeedQueryFunction(page),
     placeholderData: keepPreviousData,
   });

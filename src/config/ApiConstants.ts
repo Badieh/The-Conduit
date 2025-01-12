@@ -11,6 +11,8 @@ const yourFeedUrl = `/articles/feed`;
 
 const tagsUrl = `/tags`;
 
+const profilesUrl = `/profiles`;
+
 export {
   BaseUrl,
   loginUrl,
@@ -19,4 +21,5 @@ export {
   articlesUrl,
   yourFeedUrl,
   tagsUrl,
+  profilesUrl,
 };

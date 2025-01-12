@@ -10,7 +10,7 @@ export function globalFeedQueryFunction(page: number): Promise<AxiosResponse> {
 
 export function useGlobalArticles(page: number): UseQueryResult<AxiosResponse> {
   return useQuery({
-    queryKey: ["globalArticles", page],
+    queryKey: ["articles", "global", page],
     queryFn: () => globalFeedQueryFunction(page),
     placeholderData: keepPreviousData,
   });

@@ -1,9 +1,20 @@
 import { paths } from "@/routes/AppRouter";
+import { useFavouriteArticle } from "@/shared/api/FavourtiteArticleApi";
+import { useUnFavouriteArticle } from "@/shared/api/UnFavouriteArticleApi";
 import DefaultIImage from "@/shared/components/DefaultIImage";
 import type { Article } from "@/shared/types/ArticleModel";
 import { Link } from "react-router";
 
 export default function ArticleItem({ article }: { article: Article }) {
+  const favouriteArticleMutation = useFavouriteArticle(article.slug);
+  const unFavouriteArticleMutation = useUnFavouriteArticle(article.slug);
+
+  function handleFavouriteArticle() {
+    favouriteArticleMutation.mutate();
+  }
+  function handleUnFavouriteArticle() {
+    unFavouriteArticleMutation.mutate();
+  }
   return (
     <div className="article-preview">
       <div className="article-meta">
@@ -34,7 +45,6 @@ export default function ArticleItem({ article }: { article: Article }) {
 
           {/* Date */}
           <span className="date">
-            {" "}
             {Intl.DateTimeFormat("en-US", {
               year: "numeric",
               month: "long",
@@ -43,8 +53,17 @@ export default function ArticleItem({ article }: { article: Article }) {
           </span>
         </div>
 
-        {/* Heart Button */}
-        <button className="btn btn-outline-primary btn-sm pull-xs-right">
+        {/* favourite Button */}
+        <button
+          className={`btn btn-outline-${
+            article.favorited ? "primary" : "secondary"
+          } btn-sm pull-xs-right`}
+          onClick={
+            article.favorited
+              ? handleUnFavouriteArticle
+              : handleFavouriteArticle
+          }
+        >
           <i className="ion-heart"></i> {article.favoritesCount}
         </button>
       </div>

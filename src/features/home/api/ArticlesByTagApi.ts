@@ -22,7 +22,7 @@ export default function useArticlesByTag({
   page: number;
 }) {
   return useQuery({
-    queryKey: ["articlesByTag", tag, page],
+    queryKey: ["articles", "tag", tag, page],
     queryFn: () => getArticlesByTagQueryFunction({ tag, page }),
     placeholderData: keepPreviousData,
   });
