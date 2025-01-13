@@ -1,5 +1,5 @@
 import { paths } from "@/routes/AppRouter";
-import { useFavouriteArticle } from "@/shared/api/FavourtiteArticleApi";
+import { useFavouriteArticle } from "@/shared/api/FavouriteArticleApi";
 import { useUnFavouriteArticle } from "@/shared/api/UnFavouriteArticleApi";
 import type { Article } from "@/shared/types/ArticleModel";
 import { Link } from "react-router";

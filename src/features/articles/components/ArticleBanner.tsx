@@ -5,7 +5,7 @@ import { Link } from "react-router";
 import { useDeleteArticle } from "../api/DeleteArticleApi";
 import { useFollowProfile } from "@/shared/api/FollowProfileApi";
 import { useUnFollowProfile } from "@/shared/api/UnFollowProfileApi";
-import { useFavouriteArticle } from "@/shared/api/FavourtiteArticleApi";
+import { useFavouriteArticle } from "@/shared/api/FavouriteArticleApi";
 import { useUnFavouriteArticle } from "@/shared/api/UnFavouriteArticleApi";
 
 export default function ArticleBanner({
