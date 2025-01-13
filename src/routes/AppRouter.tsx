@@ -49,25 +49,11 @@ export default function AppRouter() {
   return <RouterProvider router={router} />;
 }
 
-// export enum routesName {
-//   Home = "/",
-//   Profile = "Profile",
-//   Article = "Article",
-//   EditArticle = "EditArticle",
-//   Setting = "Setting",
-//   Login = "Login",
-//   Register = "Register",
-// }
-// export function routePath(route: routesName) {
-//   return `/${route}`;
-// }
-
 export const paths = {
   home: {
     path: "/",
     getHref: () => "/",
   },
-
   profile: {
     path: "/profile/:id",
     getHref: (id: string) => `/profile/${id}`,
@@ -78,7 +64,7 @@ export const paths = {
   },
   editArticle: {
     path: "/edit-article/:id?",
-    getHref: (id?: string) => `/edit-article/${id}`,
+    getHref: (id?: string) => `/edit-article/${id ? id : ""}`,
   },
   setting: {
     path: "/setting",

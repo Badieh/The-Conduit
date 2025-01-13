@@ -15,13 +15,13 @@ export default function ArticleBanner({
   article: Article;
   isArticleOwner: boolean;
 }) {
-  const deleteArticleMutation = useDeleteArticle({ slug: article.slug });
+  const deleteArticleMutation = useDeleteArticle({ slug: article?.slug });
 
-  const followProfileMutation = useFollowProfile(article.author.username);
-  const unFollowProfileMutation = useUnFollowProfile(article.author.username);
+  const followProfileMutation = useFollowProfile(article?.author.username);
+  const unFollowProfileMutation = useUnFollowProfile(article?.author.username);
 
-  const favouriteArticleMutation = useFavouriteArticle(article.slug);
-  const unFavouriteArticleMutation = useUnFavouriteArticle(article.slug);
+  const favouriteArticleMutation = useFavouriteArticle(article?.slug);
+  const unFavouriteArticleMutation = useUnFavouriteArticle(article?.slug);
 
   function handleFavouriteArticle() {
     favouriteArticleMutation.mutate();
