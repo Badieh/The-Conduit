@@ -20,7 +20,7 @@ type UserState = {
 };
 export const useUserStore = create<UserState>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       user: null,
       setUser: (user: User) => set({ user }),
     }),
