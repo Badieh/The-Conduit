@@ -4,7 +4,7 @@ import { Link } from "react-router";
 import { paths } from "@/routes/AppRouter";
 import { useUserStore } from "@/stores/UserStore";
 
-export default function UserInfo({ profile }: { profile: Profile }) {
+export default function ProfileBanner({ profile }: { profile: Profile }) {
   const user = useUserStore((state) => state.user);
   return (
     <div className="user-info">

@@ -1,27 +1,22 @@
 import { useState } from "react";
-import ArticlesList from "./ArticlesList";
-import Pagination from "./Pagination";
-import { Riple } from "react-loading-indicators";
+import ArticlesList from "../../../shared/components/ArticlesList";
+import Pagination from "../../../shared/components/Pagination";
 import { useYourFeedArticles } from "../api/YourArticlesApi";
+import Loading from "@/shared/components/Loading";
 
 export default function YourFeedArticles() {
   const [page, setPage] = useState(0);
 
   const yourFeed = useYourFeedArticles(page);
 
-  const { isPending, isError, error, data, isFetching, isPlaceholderData } =
-    yourFeed;
+  const { isPending, data } = yourFeed;
 
   console.log("yourFeed", data);
   const articles = data?.data.articles;
   const articlesCount = data?.data.articlesCount;
 
   if (isPending) {
-    return (
-      <div>
-        <Riple color="#32cd32" size="medium" />
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

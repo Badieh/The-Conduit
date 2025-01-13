@@ -1,9 +1,9 @@
 import { paths } from "@/routes/AppRouter";
 import { useFavouriteArticle } from "@/shared/api/FavourtiteArticleApi";
 import { useUnFavouriteArticle } from "@/shared/api/UnFavouriteArticleApi";
-import DefaultIImage from "@/shared/components/DefaultIImage";
 import type { Article } from "@/shared/types/ArticleModel";
 import { Link } from "react-router";
+import UserImage from "./UserImage";
 
 export default function ArticleItem({ article }: { article: Article }) {
   const favouriteArticleMutation = useFavouriteArticle(article.slug);
@@ -20,18 +20,7 @@ export default function ArticleItem({ article }: { article: Article }) {
       <div className="article-meta">
         {/* image */}
         <Link to={paths.profile.getHref(article.author.username)}>
-          {article.author.image ? (
-            <img
-              title="profile"
-              src={article.author.image}
-              alt="default_user"
-              onError={(e) =>
-                (e.currentTarget.src = "src/assets/default_user.png")
-              }
-            />
-          ) : (
-            <DefaultIImage />
-          )}
+          <UserImage image={article.author.image} />
         </Link>
 
         {/* Name */}

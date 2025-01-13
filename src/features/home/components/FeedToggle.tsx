@@ -51,7 +51,7 @@ export default function FeedToggle({
             }`}
             style={{ cursor: "pointer" }}
           >
-              <i className="ion-pound"></i>&nbsp; 
+            <i className="ion-pound"></i>&nbsp;
             {selectedTag}
           </li>
         )}
