@@ -1,6 +1,7 @@
 import { Article } from "@/shared/types/ArticleModel";
 import { useState } from "react";
 import { useCreateArticle } from "../api/CreateArticleApi";
+import { useEditArticle } from "../api/EditArticleApi";
 
 export default function ArticleForm({ article }: { article?: Article }) {
   const [title, setTitle] = useState(article?.title || "");
@@ -14,6 +15,20 @@ export default function ArticleForm({ article }: { article?: Article }) {
     body,
     tagList,
   });
+  const editArticleMutation = useEditArticle({
+    slug: article?.slug || "",
+    title,
+    description,
+    body,
+    tagList,
+  });
+
+  function handleCreateArticle() {
+    createArticleMutation.mutate();
+  }
+  function handleEditArticle() {
+    editArticleMutation.mutate();
+  }
   return (
     <div className="editor-page">
       <div className="container page">
@@ -71,7 +86,7 @@ export default function ArticleForm({ article }: { article?: Article }) {
                 <button
                   className="btn btn-lg pull-xs-right btn-primary"
                   type="button"
-                  onClick={() => createArticleMutation.mutate()}
+                  onClick={article ? handleEditArticle : handleCreateArticle}
                 >
                   Publish Article
                 </button>

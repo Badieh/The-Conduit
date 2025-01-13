@@ -13,7 +13,7 @@ export default function Article() {
   const { data, isPending } = useGetArticle(slugQuery.id!);
 
   const article: Article = data?.data?.article;
-  console.log("article now", article);
+  console.log("article", article);
 
   const user = useUserStore((state) => state.user);
 

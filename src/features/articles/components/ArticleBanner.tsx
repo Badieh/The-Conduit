@@ -68,9 +68,11 @@ export default function ArticleBanner({
           </div>
           {isArticleOwner ? (
             <>
-              <button className="btn btn-sm btn-outline-secondary">
-                <i className="ion-edit"></i> Edit Article
-              </button>
+              <Link to={paths.editArticle.getHref(article?.slug)}>
+                <button className="btn btn-sm btn-outline-secondary">
+                  <i className="ion-edit"></i> Edit Article
+                </button>
+              </Link>
               &nbsp;&nbsp;
               <button
                 className="btn btn-sm btn-outline-danger"
