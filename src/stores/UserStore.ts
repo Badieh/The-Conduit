@@ -1,11 +1,6 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
-// "email": "jake@jake.jake",
-// "token": "jwt.token.here",
-// "username": "jake",
-// "bio": "I work at statefarm",
-// "image": null
 type User = {
   email?: string;
   token?: string;

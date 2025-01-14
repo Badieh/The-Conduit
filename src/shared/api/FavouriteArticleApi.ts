@@ -13,7 +13,6 @@ export function useFavouriteArticle(slug: string) {
     mutationKey: ["favouriteArticle", slug],
     mutationFn: () => favouriteArticleMutationFunction({ slug }),
     onError: (error: any) => {
-      console.log(error);
       toast.error(error.response.data.errors.body);
     },
     onSuccess: async () => {

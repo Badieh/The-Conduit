@@ -8,7 +8,6 @@ export default function EditArticleForm({ slug }: { slug: string }) {
 
   const article: Article = data?.data.article;
 
-  console.log("article", article);
   if (isPending) return <Loading />;
   return <ArticleForm article={article} />;
 }

@@ -10,7 +10,6 @@ export default function GlobalFeedArticles() {
 
   const { isPending, data } = useGlobalArticles(page);
 
-  console.log("globalFeed", data);
   const articles = data?.data.articles;
   const articlesCount = data?.data.articlesCount;
 

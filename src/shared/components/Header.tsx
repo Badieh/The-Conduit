@@ -7,8 +7,6 @@ import { paths } from "@/routes/AppRouter";
 export default function Header() {
   const user = useUserStore((state) => state.user);
 
-  console.log("current user:", user);
-
   return (
     <nav className="navbar navbar-light">
       <div className="container">

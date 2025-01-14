@@ -17,7 +17,6 @@ export function useUnFollowProfile(username: string) {
     mutationKey: ["unFollowProfile", username],
     mutationFn: () => unFollowProfileMutationFunction({ username }),
     onError: (error: any) => {
-      console.log(error);
       toast.error(error.response.data.errors.body);
     },
     onSuccess: async () => {

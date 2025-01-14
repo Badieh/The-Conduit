@@ -35,12 +35,9 @@ export const useSettingMutation = () => {
     mutationKey: ["updateUser"],
     mutationFn: settingMutationFunction,
     onError: (error: any) => {
-      console.log(error);
-      console.log(error.response.data.errors.body);
       toast.error(error.response.data.errors.body);
     },
     onSuccess: (data) => {
-      console.log(data.data);
       useUserStore.setState({ user: data.data.user });
       toast.success("User Info Updated successfully");
       navigate(paths.home.getHref());

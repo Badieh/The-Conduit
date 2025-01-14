@@ -11,7 +11,6 @@ export default function TagFeedArticles({ tag }: { tag: string }) {
 
   const { isPending, data } = tagFeed;
 
-  console.log("tagFeed", data);
   const articles = data?.data.articles;
   const articlesCount = data?.data.articlesCount;
 

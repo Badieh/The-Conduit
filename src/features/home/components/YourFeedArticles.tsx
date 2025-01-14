@@ -11,7 +11,6 @@ export default function YourFeedArticles() {
 
   const { isPending, data } = yourFeed;
 
-  console.log("yourFeed", data);
   const articles = data?.data.articles;
   const articlesCount = data?.data.articlesCount;
 

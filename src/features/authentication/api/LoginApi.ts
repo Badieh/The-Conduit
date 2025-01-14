@@ -29,11 +29,9 @@ export const useLoginMutation = () => {
     mutationFn: loginMutationFunction,
 
     onError: (error: any) => {
-      console.log(error.response.data.errors.body);
       toast.error(error.response.data.errors.body);
     },
     onSuccess: (data) => {
-      console.log(data.data);
       useUserStore.setState({ user: data.data.user });
       navigate(paths.home.getHref());
       toast.success(`Hello ${data.data.user.username}, welcome to Conduit!`);

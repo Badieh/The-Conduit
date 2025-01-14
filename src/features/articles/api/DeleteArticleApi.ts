@@ -15,7 +15,6 @@ export function useDeleteArticle({ slug }: { slug: string }) {
     mutationKey: ["deleteArticle", slug],
     mutationFn: () => DeleteArticleMutationFunction({ slug }),
     onError: (error: any) => {
-      console.log(error);
       toast.error(error.response.data.errors.body);
     },
     onSuccess: async () => {
