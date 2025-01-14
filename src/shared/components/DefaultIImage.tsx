@@ -1,9 +1,9 @@
-export default function DefaultIImage({className}:{className?:string}) {
+export default function DefaultIImage({ className }: { className?: string }) {
   return (
     <img
       className={className}
       title="user-img"
-      src="src/assets/default_user.png"
+      src="/assets/default_user.png"
       alt="default_user"
       onError={(e) =>
         (e.currentTarget.src =
