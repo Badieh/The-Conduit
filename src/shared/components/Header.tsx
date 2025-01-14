@@ -7,8 +7,11 @@ import { paths } from "@/routes/AppRouter";
 export default function Header() {
   const user = useUserStore((state) => state.user);
 
+  console.log("current user:", user);
+
   return (
-    <nav className="navbar navbar-light">
+    <header>
+          <nav className="navbar navbar-light">
       <div className="container">
         <NavLink className="navbar-brand" to={paths.home.getHref()}>
           conduit
@@ -42,5 +45,7 @@ export default function Header() {
         </ul>
       </div>
     </nav>
+    </header>
+
   );
 }

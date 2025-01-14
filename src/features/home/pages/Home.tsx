@@ -8,24 +8,26 @@ export default function Home() {
   const [selectedFeedType, setSelectedFeedType] = useState(FeedType.global);
 
   return (
-    <div className="home-page">
-      <Banner />
+    <main>
+      <div className="home-page">
+        <Banner />
 
-      <div className="container page">
-        <div className="row">
-          <Feed
-            selectedFeedType={selectedFeedType}
-            setSelectedFeedType={setSelectedFeedType}
-            selectedTag={selectedTag}
-            setSelectedTag={setSelectedTag}
-          />
+        <div className="container page">
+          <div className="row" style={{ justifyContent: "center" }}>
+            <Feed
+              selectedFeedType={selectedFeedType}
+              setSelectedFeedType={setSelectedFeedType}
+              selectedTag={selectedTag}
+              setSelectedTag={setSelectedTag}
+            />
 
-          <PopularTags
-            setSelectedTag={setSelectedTag}
-            setSelectedFeedType={setSelectedFeedType}
-          />
+            <PopularTags
+              setSelectedTag={setSelectedTag}
+              setSelectedFeedType={setSelectedFeedType}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
