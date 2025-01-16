@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import { paths } from "@/routes/AppRouter";
 import { useDeleteComment } from "../api/DeleteCommentApi";
 import { Article } from "@/shared/types/ArticleModel";
+import { useUserStore } from "@/stores/UserStore";
 
 export default function CommentCard({
   article,
@@ -16,6 +17,8 @@ export default function CommentCard({
     slug: article.slug,
     commentId: comment.id,
   });
+
+  const user = useUserStore((state) => state.user);
 
   function handleDeleteComment() {
     if (!window.confirm("Are you sure you want to delete this comment?"))
@@ -46,14 +49,16 @@ export default function CommentCard({
             day: "numeric",
           }).format(new Date(comment?.createdAt))}
         </span>
-        <button
-          className="btn btn-sm btn-outline-secondary pull-xs-right"
-          title="Delete comment"
-          type="button"
-          onClick={handleDeleteComment}
-        >
-          <i className="ion-trash-a"></i>
-        </button>
+        {user?.username === comment?.author.username && (
+          <button
+            className="btn btn-sm btn-outline-secondary pull-xs-right"
+            title="Delete comment"
+            type="button"
+            onClick={handleDeleteComment}
+          >
+            <i className="ion-trash-a"></i>
+          </button>
+        )}
       </div>
     </div>
   );

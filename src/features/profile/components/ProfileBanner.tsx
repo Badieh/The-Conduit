@@ -25,13 +25,14 @@ export default function ProfileBanner({ profile }: { profile: Profile }) {
                 &nbsp; {profile?.following ? "Unfollow" : "Follow"}
               </button>
             )}
-
-            <Link to={paths.setting.getHref()}>
-              <button className="btn btn-sm btn-outline-secondary action-btn">
-                <i className="ion-gear-a"></i>
-                &nbsp; Edit Profile Settings
-              </button>
-            </Link>
+            {user?.username === profile?.username && (
+              <Link to={paths.setting.getHref()}>
+                <button className="btn btn-sm btn-outline-secondary action-btn">
+                  <i className="ion-gear-a"></i>
+                  &nbsp; Edit Profile Settings
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
