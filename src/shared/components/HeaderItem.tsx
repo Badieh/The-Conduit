@@ -7,9 +7,11 @@ interface HeaderItemProps {
 
 export default function HeaderItem({ route, children }: HeaderItemProps) {
   return (
-    <li className="nav-item">
+    <li className="sm:text-xl">
       <NavLink
-        className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
+        className={({ isActive }) =>
+          `hover:text-blue-400 ${isActive ? "text-blue-400 no-underline" : "text-gray-400"}`
+        }
         to={route}
       >
         {children}
