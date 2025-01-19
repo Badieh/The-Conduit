@@ -15,7 +15,7 @@ export default function Feed({
   setSelectedTag: (tag: string | null) => void;
 }) {
   return (
-    <div className="col-md-9">
+    <div className="mt-4 flex flex-col gap-3 sm:gap-6">
       <FeedToggle
         selectedFeedType={selectedFeedType}
         setSelectedFeedType={setSelectedFeedType}

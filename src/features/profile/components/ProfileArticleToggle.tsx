@@ -1,3 +1,4 @@
+import { FeedToggleItem } from "@/shared/components/FeedToggleItem";
 import { ProfileFeedType } from "./ProfileFeed";
 
 export default function ProfileArticleToggle({
@@ -8,31 +9,21 @@ export default function ProfileArticleToggle({
   setSelectedFeedType: (FeedType: ProfileFeedType) => void;
 }) {
   return (
-    <div className="articles-toggle">
-      <ul className="nav nav-pills outline-active">
-        <li
-          className={`nav-item nav-link ${
-            selectedFeedType === ProfileFeedType.my_articles ? "active" : ""
-          }`}
+    <div className="border-b-gray-400 px-4">
+      <ul className="flex items-center border-b-gray-400">
+        <FeedToggleItem
+          isSelected={selectedFeedType === ProfileFeedType.my_articles}
           onClick={() => setSelectedFeedType(ProfileFeedType.my_articles)}
-          style={{ cursor: "pointer" }}
-        >
-          My Articles
-        </li>
+          children="My Articles"
+        />
 
-        <li
-          className={`nav-item nav-link ${
-            selectedFeedType === ProfileFeedType.favourited_articles
-              ? "active"
-              : ""
-          }`}
-          style={{ cursor: "pointer" }}
+        <FeedToggleItem
+          isSelected={selectedFeedType === ProfileFeedType.favourited_articles}
           onClick={() =>
             setSelectedFeedType(ProfileFeedType.favourited_articles)
           }
-        >
-          Favourited Articles
-        </li>
+          children="Favourited Articles"
+        />
       </ul>
     </div>
   );

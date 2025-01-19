@@ -1,5 +1,6 @@
 import { useUserStore } from "@/stores/UserStore";
 import { FeedType } from "./Feed";
+import { FeedToggleItem } from "@/shared/components/FeedToggleItem";
 
 export default function FeedToggle({
   selectedFeedType,
@@ -14,46 +15,36 @@ export default function FeedToggle({
 }) {
   const user = useUserStore((state) => state.user);
   return (
-    <div className="feed-toggle">
-      <ul className="nav nav-pills outline-active">
+    <div className="border-b-gray-400 px-4">
+      <ul className="flex items-center border-b-gray-400">
         {user && (
-          <li
-            className={`nav-item nav-link ${
-              selectedFeedType === FeedType.your_feed ? "active" : ""
-            }`}
+          <FeedToggleItem
+            isSelected={selectedFeedType === FeedType.your_feed}
+            children="Your Feed"
             onClick={() => {
               setSelectedTag?.(null);
               return setSelectedFeedType(FeedType.your_feed);
             }}
-            style={{ cursor: "pointer" }}
-          >
-            Your Feed
-          </li>
+          />
         )}
-
-        <li
-          className={`nav-item nav-link ${
-            selectedFeedType === FeedType.global ? "active" : ""
-          }`}
+        <FeedToggleItem
+          isSelected={selectedFeedType === FeedType.global}
+          children="Global Feed"
           onClick={() => {
             setSelectedTag?.(null);
 
             return setSelectedFeedType(FeedType.global);
           }}
-          style={{ cursor: "pointer" }}
-        >
-          Global Feed
-        </li>
+        />
+
         {selectedFeedType === FeedType.popular_tags && selectedTag && (
-          <li
-            className={`nav-item nav-link ${
-              selectedFeedType === FeedType.popular_tags ? "active" : ""
-            }`}
-            style={{ cursor: "pointer" }}
+          <FeedToggleItem
+            isSelected={selectedFeedType === FeedType.popular_tags}
+            onClick={() => {}}
           >
             <i className="ion-pound"></i>&nbsp;
             {selectedTag}
-          </li>
+          </FeedToggleItem>
         )}
       </ul>
     </div>
