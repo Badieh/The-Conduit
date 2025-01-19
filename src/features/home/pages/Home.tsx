@@ -9,18 +9,18 @@ export default function Home() {
 
   return (
     <main>
-      <div className="home-page">
+      <div>
         <Banner />
-
-        <div className="container page">
-          <div className="row" style={{ justifyContent: "center" }}>
+        <div className="grid grid-cols-1 sm:grid-cols-3 md:px-20">
+          <div className="sm:col-span-2">
             <Feed
               selectedFeedType={selectedFeedType}
               setSelectedFeedType={setSelectedFeedType}
               selectedTag={selectedTag}
               setSelectedTag={setSelectedTag}
             />
-
+          </div>
+          <div className="h-auto sm:col-span-1">
             <PopularTags
               setSelectedTag={setSelectedTag}
               setSelectedFeedType={setSelectedFeedType}

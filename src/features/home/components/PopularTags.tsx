@@ -13,20 +13,17 @@ export default function PopularTags({
   const tags = data?.data.tags.slice(0, 50);
 
   return (
-    <div className="col-md-3">
-      <div className="sidebar">
-        <p>Popular Tags</p>
-
-        <div className="tag-list">
-          {tags?.map((tag: string) => (
-            <Tag
-              key={tag}
-              tag={tag}
-              setSelectedTag={setSelectedTag}
-              setSelectedFeedType={setSelectedFeedType}
-            />
-          ))}
-        </div>
+    <div className="m-4 flex flex-col gap-2 rounded-xl border border-gray-400 px-2 py-1 sm:mr-2 sm:mt-3 sm:py-2">
+      <p className="font-semibold sm:text-lg">Popular Tags</p>
+      <div className="flex flex-wrap gap-1">
+        {tags?.map((tag: string) => (
+          <Tag
+            key={tag}
+            tag={tag}
+            setSelectedTag={setSelectedTag}
+            setSelectedFeedType={setSelectedFeedType}
+          />
+        ))}
       </div>
     </div>
   );

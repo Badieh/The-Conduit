@@ -11,8 +11,7 @@ export default function Tag({
 }) {
   return (
     <div
-      className="tag-pill tag-default"
-      style={{ cursor: "pointer" }}
+      className="cursor-pointer rounded-full bg-gray-200 px-2 py-1 text-sm font-semibold text-gray-700"
       onClick={() => {
         setSelectedFeedType(FeedType.popular_tags);
         return setSelectedTag(tag);
