@@ -5,7 +5,8 @@ import ArticleContent from "../components/ArticleContent";
 import ArticleComments from "../components/ArticleComments";
 import { useGetArticle } from "../api/GetArticleApi";
 import { useParams } from "react-router";
-import { Riple } from "react-loading-indicators";
+
+import Loading from "@/shared/components/Loading";
 
 export default function Article() {
   const slugQuery = useParams();
@@ -18,22 +19,15 @@ export default function Article() {
 
   const isArticleOwner = user?.username === article?.author.username;
 
-  if (isPending)
-    return (
-      <div className="container page">
-        <Riple color="#32cd32" size="medium" />
-      </div>
-    );
+  if (isPending) return <Loading />;
   return (
-    <div className="article-page">
+    <div className="flex flex-col">
       <ArticleBanner article={article} isArticleOwner={isArticleOwner} />
 
-      <div className="container page">
-        <ArticleContent article={article} />
-        <hr />
+      <ArticleContent article={article} />
+      <hr />
 
-        <ArticleComments article={article} />
-      </div>
+      <ArticleComments article={article} />
     </div>
   );
 }

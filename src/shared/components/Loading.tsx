@@ -10,7 +10,7 @@ export default function Loading() {
         alignItems: "center",
       }}
     >
-      <Riple color="#32cd32" size="medium" />
+      <Riple color="#3275CDFF" size="medium" />
     </div>
   );
 }

@@ -7,6 +7,8 @@ import { useFollowProfile } from "@/shared/api/FollowProfileApi";
 import { useUnFollowProfile } from "@/shared/api/UnFollowProfileApi";
 import { useFavouriteArticle } from "@/shared/api/FavouriteArticleApi";
 import { useUnFavouriteArticle } from "@/shared/api/UnFavouriteArticleApi";
+import { SlUserFollow, SlUserUnfollow } from "react-icons/sl";
+import { FcDislike, FcLike } from "react-icons/fc";
 
 export default function ArticleBanner({
   article,
@@ -42,81 +44,85 @@ export default function ArticleBanner({
   }
 
   return (
-    <div className="banner">
-      <div className="container">
-        <h1>{article?.title}</h1>
+    <div className="flex flex-col justify-center gap-4 bg-slate-700 px-4 py-5 sm:px-14 sm:py-10">
+      <h1 className="text text-3xl font-bold text-white sm:text-5xl">
+        {article?.title}
+      </h1>
 
-        <div className="article-meta">
-          <Link to={paths.profile.getHref(article?.author.username)}>
-            <UserImage image={article?.author.image} />
+      <div className="flex items-center gap-2 sm:gap-5">
+        <Link to={paths.profile.getHref(article?.author.username)}>
+          <UserImage
+            image={article?.author.image}
+            className="w-9 rounded-full sm:w-16"
+          />
+        </Link>
+        <div className="flex flex-col justify-center">
+          <Link
+            to={paths.profile.getHref(article?.author.username)}
+            className="text-xs font-semibold text-white sm:text-lg"
+          >
+            {article?.author.username}
           </Link>
-          <div className="info">
-            <Link
-              to={paths.profile.getHref(article?.author.username)}
-              className="author"
-            >
-              {article?.author.username}
-            </Link>
-            <span className="date">
-              {article?.createdAt &&
-                Intl.DateTimeFormat("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                }).format(new Date(article?.createdAt))}
-            </span>
-          </div>
-          {isArticleOwner ? (
-            <>
-              <Link to={paths.editArticle.getHref(article?.slug)}>
-                <button className="btn btn-sm btn-outline-secondary">
-                  <i className="ion-edit"></i> Edit Article
-                </button>
-              </Link>
-              &nbsp;&nbsp;
-              <button
-                className="btn btn-sm btn-outline-danger"
-                onClick={handleDeleteArticle}
-              >
-                <i className="ion-trash-a"></i> Delete Article
-              </button>
-            </>
-          ) : (
-            <>
-              <button
-                className={`btn btn-sm btn-outline-${
-                  article?.author.following ? "primary" : "secondary"
-                }`}
-                onClick={
-                  article?.author.following
-                    ? handleUnFollowProfile
-                    : handleFollowProfile
-                }
-              >
-                <i className="ion-plus-round"></i>
-                &nbsp; {article?.author.following ? "Unfollow" : "Follow"}
-                <span className="counter">
-                  ({article?.author.followersCount})
-                </span>
-              </button>
-              &nbsp;&nbsp;
-              <button
-                className={`btn btn-sm btn-outline-${
-                  article?.favorited ? "primary" : "secondary"
-                }`}
-                onClick={
-                  article?.favorited
-                    ? handleUnFavouriteArticle
-                    : handleFavouriteArticle
-                }
-              >
-                <i className="ion-heart"></i>
-                &nbsp; Favorite Article
-                <span className="counter">({article?.favoritesCount})</span>
-              </button>
-            </>
-          )}
+          <span className="text-xs text-gray-400 sm:text-lg">
+            {article?.createdAt &&
+              Intl.DateTimeFormat("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              }).format(new Date(article?.createdAt))}
+          </span>
         </div>
+        {isArticleOwner ? (
+          <>
+            <Link to={paths.editArticle.getHref(article?.slug)}>
+              <button className="border border-gray-400">
+                <i className="ion-edit"></i> Edit Article
+              </button>
+            </Link>
+            &nbsp;&nbsp;
+            <button className="" onClick={handleDeleteArticle}>
+              <i className="ion-trash-a"></i> Delete Article
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              className={`flex h-fit items-center justify-center rounded-md border border-gray-400 px-1 py-1 text-xs sm:px-4 sm:text-lg ${
+                article?.author.following ? "bg-blue-200" : "bg-gray-300"
+              }`}
+              onClick={
+                article?.author.following
+                  ? handleUnFollowProfile
+                  : handleFollowProfile
+              }
+            >
+              {article?.author.following ? (
+                <SlUserUnfollow />
+              ) : (
+                <SlUserFollow />
+              )}
+              &nbsp; {article?.author.following ? "Unfollow" : "Follow"}
+              <span className="counter">
+                ({article?.author.followersCount})
+              </span>
+            </button>
+            &nbsp;&nbsp;
+            <button
+              className={`flex h-fit items-center justify-center rounded-md border border-gray-400 px-1 py-1 text-xs sm:px-4 sm:text-lg ${
+                article?.favorited ? "bg-blue-200" : "bg-gray-300"
+              }`}
+              onClick={
+                article?.favorited
+                  ? handleUnFavouriteArticle
+                  : handleFavouriteArticle
+              }
+            >
+              {article?.favorited ? <FcDislike /> : <FcLike />}
+              &nbsp; Favorite
+              <span className="counter">({article?.favoritesCount})</span>
+            </button>
+          </>
+        )}
       </div>
     </div>
   );

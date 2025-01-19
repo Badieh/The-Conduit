@@ -4,7 +4,6 @@ import HeaderItem from "./HeaderItem";
 import { useUserStore } from "@/stores/UserStore";
 import { paths } from "@/routes/AppRouter";
 import { RiLoginCircleFill } from "react-icons/ri";
-import { IconContext } from "react-icons";
 import { FaWpforms } from "react-icons/fa";
 
 export default function Header() {
