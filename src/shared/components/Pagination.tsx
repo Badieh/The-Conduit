@@ -1,3 +1,4 @@
+import { FcNext, FcPrevious } from "react-icons/fc";
 import ReactPaginate from "react-paginate";
 
 export default function Pagination({
@@ -9,23 +10,17 @@ export default function Pagination({
 }) {
   return (
     <ReactPaginate
-      containerClassName="pagination"
-      pageClassName="page-item"
-      pageLinkClassName="page-link"
-      breakLinkClassName="page-link"
-      breakClassName="page-item"
-      nextClassName="page-item"
-      nextLinkClassName="page-link"
-      previousClassName="page-item"
-      previousLinkClassName="page-link"
-      activeClassName="active"
+      containerClassName="flex gap-2 justify-center items-center my-4"
+      pageClassName="border border-gray-400 px-2 py-1 rounded-md"
+      breakClassName="border border-gray-400 px-2 py-1 rounded-md"
+      activeClassName="active bg-blue-400 text-white"
       breakLabel="..."
-      nextLabel=">"
+      previousLabel={<FcPrevious />}
       onPageChange={(selectedItem) => setPage(selectedItem.selected)}
-      // pageRangeDisplayed={10}
       pageCount={Math.ceil(Number(articlesCount) / 3)} // default limit is 3 articles per page
-      previousLabel="<"
+      nextLabel={<FcNext />}
       renderOnZeroPageCount={null}
+      marginPagesDisplayed={1}
     />
   );
 }
