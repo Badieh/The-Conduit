@@ -21,7 +21,7 @@ export default function Article() {
 
   if (isPending) return <Loading />;
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-4">
       <ArticleBanner article={article} isArticleOwner={isArticleOwner} />
 
       <ArticleContent article={article} />
